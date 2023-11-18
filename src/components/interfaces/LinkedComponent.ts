@@ -4,6 +4,7 @@ export interface ILinkedComponent {
     parentId: number | null;
     type: Type;
     renderComponent: any;
+    direction: 'row' | 'column'
 }
 
 export enum Type {

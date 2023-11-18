@@ -7,11 +7,12 @@ import { Type, type ILinkedComponent } from "../interfaces/LinkedComponent";
 import {
     CreateNewLinkedComponent,
     RemoveLinkedComponentRecursively,
-    templateComponent } from "../../utils/linkedComponent.ts";
+    templateComponent,
+    PageComponent } from "../../utils/linkedComponent.ts";
 
 export default function PageBuilder() {
     const [linkedComponents, setLinkedComponents] =
-        useState<ILinkedComponent[]>([templateComponent]);
+        useState<ILinkedComponent[]>([PageComponent]);
 
     const [selectedComponent, setSelectedComponent] =
         useState<undefined | ILinkedComponent>(undefined)
@@ -24,18 +25,12 @@ export default function PageBuilder() {
 
         const id = maxExistingId + 1;
 
-        const newComponent = {
-            ...templateComponent,
-            id,
-            parentId,
-            name: `name: ${id}`
-        };
-
-        CreateNewLinkedComponent(
+        const newComponent = CreateNewLinkedComponent(
             id,
             `name: ${id}`,
             parentId,
-            Type.Container, null);
+            Type.Container,
+            null);
 
         setLinkedComponents([...linkedComponents, newComponent])
     }
@@ -54,6 +49,14 @@ export default function PageBuilder() {
         setSelectedComponent(linkedComponents.find(x => x.id === id))
     }
 
+    function updateComponent(component: ILinkedComponent): void {
+        setLinkedComponents(prevState =>
+            prevState.map(linkedComponent =>
+                linkedComponent.id === component.id ? { ...component } : linkedComponent
+            )
+        );
+    }
+
     return (
         <section id='pageBuilder'>
             <TreeComponents
@@ -65,7 +68,7 @@ export default function PageBuilder() {
                 linkedComponents = {linkedComponents}
                 addNestedComponentTo = {addChildComponentTo}
                 removeNestedComponent = {removeChildComponent} />
-            <Toolbar linkedComponent = {selectedComponent} />
+            <Toolbar linkedComponent = {selectedComponent} updateComponent = {updateComponent} />
         </section>
     )
 }

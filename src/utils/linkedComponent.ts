@@ -7,7 +7,18 @@ export const templateComponent: ILinkedComponent =
     name: 'page',
     parentId: null,
     renderComponent: null,
-    type: Type.None
+    type: Type.None,
+    direction: "row"
+}
+
+export const PageComponent: ILinkedComponent =
+{
+    id: 0,
+    name: 'page',
+    parentId: null,
+    renderComponent: null,
+    type: Type.Container,
+    direction: "row"
 }
 
 export function CreateNewLinkedComponent (
@@ -21,9 +32,10 @@ export function CreateNewLinkedComponent (
     return {
         id: id,
         name: name,
-        parentId: null,
+        parentId: parentId,
         renderComponent: renderComponent,
-        type: Type.None
+        type: type,
+        direction: "row"
     }
 }
 
