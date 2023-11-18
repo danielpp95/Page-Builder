@@ -84,7 +84,10 @@ export default function PageBuilder() {
         linkedComponents={linkedComponents}
         addNestedComponentTo={addNestedComponentTo}
         removeNestedComponent={removeNestedComponent}/>
-      <LinkedComponent/>
+      <LinkedComponent
+        linkedComponents={linkedComponents}
+        addNestedComponentTo={addNestedComponentTo}
+        removeNestedComponent={removeNestedComponent}/>
       <Toolbar/>
     </section>
   )
