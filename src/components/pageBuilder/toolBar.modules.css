@@ -1,0 +1,5 @@
+.page-builder--toolbar {
+    padding: 1rem;
+    background-color: var(--midnight-purple);
+    box-sizing: border-box;
+}
