@@ -1,0 +1,137 @@
+---
+import Layout from '../layouts/Layout.astro';
+import PageBuilder from '../components/pageBuilder/PageBuilder.jsx';
+---
+
+<Layout title="Welcome to Astro.">
+	<main>
+		<ul class="tree">
+			<li>
+				<details open>
+					<summary>page</summary>
+					<ul>
+						<li>
+							<details open>
+								<summary>page-child1</summary>
+								<ul>
+									<li>
+										<details open>
+											<summary>child1-content</summary>
+											<ul>
+												<li>
+													<p>content</p>
+												</li>
+												<li>
+													<p>content2</p>
+												</li>
+											</ul>
+										</details>
+									</li>
+								</ul>
+							</details>
+						</li>
+						<li>
+							<details open>
+								<summary>page-child2</summary>
+								<ul>
+									<li>
+										<p>content</p>
+									</li>
+									<li>
+										<p>content2</p>
+									</li>
+								</ul>
+								
+							</details>
+						</li>
+					</ul>
+			</li>
+		</ul>
+        </details>
+	</main>
+</Layout>
+
+<style>
+	main {
+		margin: 0;
+		padding: 0;
+		/* width: 800px; */
+		/* max-width: calc(100% - 2rem); */
+		color: white;
+		font-size: 20px;
+		line-height: 1.6;
+	}
+
+	p {
+		margin: 0;
+	}
+
+	ul {
+		list-style: none;
+		line-height: 2em;
+	}
+
+	ul summary {
+		cursor: pointer;
+	}
+
+	ul summary::marker {
+		display: none;
+		content: '';
+	}
+
+	ul li {
+		position: relative;
+		/* outline: 1px solid green; */
+	}
+
+	ul li::before {
+		position: absolute;
+		left: -10px;
+		top: 0px;
+		border-left: 2px solid lightgray;
+		border-bottom: 2px solid lightgray;
+		content: '';
+		width: 8px;
+		height: 1em;
+	}
+
+	ul li::after {
+		position: absolute;
+		left: -10px;
+		bottom: 0px;
+		border-left: 2px solid lightgray;
+		content: '';
+		width: 8px;
+		height: 100%;
+	}
+
+	ul li:last-child::after {
+		display: none;
+	}
+
+	/* ul.tree > li::after, */
+	ul.tree > li::before {
+		display: none;
+	}
+
+	ul summary::before {
+		position: absolute;
+		content: '+';
+		background: rgb(211, 217, 203);
+		display: block;
+		width: 1em;
+		height: 1em;
+		line-height: 0.9em;
+		text-align: center;
+		top: 0.5em;
+		left: -1.6em;
+		z-index: 1;
+		border-radius: 50em;
+	}
+
+	ul details[open] > summary::before {
+		content: '-';
+	}
+
+</style>
