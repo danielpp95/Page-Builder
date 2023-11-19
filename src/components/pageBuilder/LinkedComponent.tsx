@@ -4,16 +4,22 @@ interface LinkedComponentProps {
     linkedComponents: ILinkedComponent[];
     addNestedComponentTo: (parentId: number) => void;
     removeNestedComponent: (id: number) => void;
+    selectComponent: (id: number) => void;
 }
 
 export default function LinkedComponent({
-  linkedComponents,
-  addNestedComponentTo,
-  removeNestedComponent} : LinkedComponentProps)
+    linkedComponents,
+    addNestedComponentTo,
+    removeNestedComponent,
+    selectComponent} : LinkedComponentProps)
 {
     return (
         <div>
-            <RenderComponent id={0} components={linkedComponents} />
+            <RenderComponent
+                id={0}
+                components={linkedComponents}
+                selectComponent={selectComponent}
+            />
         </div>
     )
 }
@@ -21,9 +27,14 @@ export default function LinkedComponent({
 interface RenderComponentProps {
     id: number;
     components: ILinkedComponent[];
+    selectComponent: (id: number) => void;
 }
 /// will only render leaf components
-function RenderComponent({id, components} : RenderComponentProps) {
+function RenderComponent({
+    id,
+    components,
+    selectComponent} : RenderComponentProps)
+{
     const component = components.find(x => x.id === id);
 
     if (component === undefined) {
@@ -37,7 +48,13 @@ function RenderComponent({id, components} : RenderComponentProps) {
             throw new Error("Null Renderer");
         }
 
-        return <ComponentToRender />;
+        return (
+            <div
+                onClick={() => selectComponent(component.id)}
+                style={{cursor:'pointer'}}
+            >
+            <ComponentToRender />
+        </div>)
     }
 
     if (component.type === Type.Container) {
@@ -50,7 +67,7 @@ function RenderComponent({id, components} : RenderComponentProps) {
 
         return <div style={componentStyle}>
             {
-                children.map(x => <RenderComponent id={x.id} key={x.id} components={components} />)
+                children.map(x => <RenderComponent id={x.id} key={x.id} components={components} selectComponent={selectComponent} />)
             }
         </div>
     }

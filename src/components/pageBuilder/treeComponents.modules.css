@@ -5,12 +5,13 @@
     overflow-x: auto;
 }
 
-
 :root {
-    --vertical-line-left: -2.75rem;
+    --vertical-line-left: -2.3rem;
     --horizontal-line-width: 2rem;
-    --circle-size: 1.6rem;
-    --circle-left: -2rem;
+    --horizontal-line-top: -0.5rem;
+    --circle-size: 1.7rem;
+    --circle-left: -1.5rem;
+    --circle-up: 0.8rem;
     --ul-padding: 1.5rem;
     --line-height: 2rem;
     --font-size: 1.4rem;
@@ -47,7 +48,7 @@ ul li::before {
     border-bottom: 2px solid lightgray;
     left: var(--vertical-line-left);
     width: var(--horizontal-line-width);
-    top: -1rem;
+    top: var(--horizontal-line-top);
     height: 2rem;
 }
 
@@ -79,7 +80,7 @@ ul summary::before {
     height: var(--circle-size);
     line-height: 1.5rem;
     text-align: center;
-    top: 0.3rem;
+    top: var(--circle-up);
     left: var(--circle-left);
     z-index: 1;
     border-radius: 50em;
@@ -96,6 +97,7 @@ ul details[open] > summary::before {
     font-size: 1.4rem;
     align-items: center;
     cursor: pointer;
+    padding: 0.5rem;
 }
 
 .tree-item p {
@@ -114,4 +116,11 @@ ul details[open] > summary::before {
 
 .page-builder--tree-components >ul > li::before {
     display: none;
+}
+
+.tree-item-selected {
+    background-color: var(--intense-purple);
+    margin-left: -50rem;
+    padding-left: 50.5rem;
+    margin-right: -10rem;
 }

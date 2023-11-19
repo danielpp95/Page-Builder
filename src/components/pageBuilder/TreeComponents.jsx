@@ -5,7 +5,8 @@ export default function TreeComponents({
     linkedComponents,
     addNestedComponentTo,
     removeNestedComponent,
-    selectComponent}) {
+    selectComponent,
+    selectedComponent}) {
     return (
         <div className='page-builder--tree-components'>
             <h2>Components Tree</h2>
@@ -16,7 +17,9 @@ export default function TreeComponents({
                     components={[...linkedComponents]}
                     addNestedComponentTo={addNestedComponentTo}
                     removeNestedComponent={removeNestedComponent}
-                    selectComponent={selectComponent}/>
+                    selectComponent={selectComponent}
+                    selectedComponent = {selectedComponent}
+                />
                 </li>
             </ul>
         </div>
@@ -29,7 +32,8 @@ function RenderLinkedComponentsTree({
     deepLevel = 0,
     addNestedComponentTo,
     removeNestedComponent,
-    selectComponent})
+    selectComponent,
+    selectedComponent})
 {
     const children = components.filter(x => x.parentId === component.id);
 
@@ -38,7 +42,9 @@ function RenderLinkedComponentsTree({
             component = {component}
             addNestedComponentTo = {addNestedComponentTo}
             removeNestedComponent = {removeNestedComponent}
-            selectComponent={selectComponent} />
+            selectComponent={selectComponent}
+            selectedComponent={selectedComponent}
+        />
     }
 
     return (
@@ -48,7 +54,9 @@ function RenderLinkedComponentsTree({
                     component = {component}
                     addNestedComponentTo = {addNestedComponentTo}
                     removeNestedComponent = {removeNestedComponent}
-                    selectComponent={selectComponent} />
+                    selectComponent={selectComponent}
+                    selectedComponent={selectedComponent}
+                />
             </summary>
             <ul>
                 {
@@ -64,6 +72,7 @@ function RenderLinkedComponentsTree({
                                     addNestedComponentTo = {addNestedComponentTo}
                                     removeNestedComponent = {removeNestedComponent}
                                     selectComponent = {selectComponent}
+                                    selectedComponent = {selectedComponent}
                                 />
                             </li>
                     ))
@@ -77,11 +86,16 @@ function RenderComponent({
     component,
     addNestedComponentTo,
     removeNestedComponent,
-    selectComponent})
+    selectComponent,
+    selectedComponent})
 {
     return (
-        <div key={component.id} className='tree-item'>
-            <p onClick={() => selectComponent(component.id)}>
+        <div 
+            key={component.id}
+            className={`tree-item ${selectedComponent?.id === component.id ? 'tree-item-selected' : ''}`}
+            onClick={() => selectComponent(component.id)}
+        >
+            <p>
                 {component.name}
             </p> 
             

@@ -63,11 +63,15 @@ export default function PageBuilder() {
                 linkedComponents = {linkedComponents}
                 addNestedComponentTo = {addChildComponentTo}
                 removeNestedComponent = {removeChildComponent}
-                selectComponent = {SelectComponent} />
+                selectComponent = {SelectComponent}
+                selectedComponent = {selectedComponent}
+            />
             <LinkedComponent
                 linkedComponents = {linkedComponents}
                 addNestedComponentTo = {addChildComponentTo}
-                removeNestedComponent = {removeChildComponent} />
+                removeNestedComponent = {removeChildComponent}
+                selectComponent = {SelectComponent}
+            />
             <Toolbar linkedComponent = {selectedComponent} updateComponent = {updateComponent} />
         </section>
     )
