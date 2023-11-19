@@ -1,6 +1,7 @@
 import './toolBar.modules.css'
 import { Type, type ILinkedComponent } from "../interfaces/LinkedComponent";
 import { useEffect, useState } from 'react';
+import { BlueComponent, GreenComponent } from '../../template-components'
 
 interface ToolbarProps {
     linkedComponent: undefined | ILinkedComponent;
@@ -32,11 +33,13 @@ function RenderForm({linkedComponent, updateComponent}: ToolbarProps)
     const [name, setName] = useState<string>('');
     const [direction, setDirection] = useState<'row' | 'column'>('row');
     const [type, setType] = useState<Type>(Type.None)
+    const [component, setComponent] = useState<any>('0')
 
     useEffect(() => {
         setName(linkedComponent!.name)
         setDirection(linkedComponent!.direction);
         setType(linkedComponent?.type || Type.None);;
+        setComponent(linkedComponent?.renderComponent ?? '0');;
     }, [linkedComponent])
     
 
@@ -46,7 +49,7 @@ function RenderForm({linkedComponent, updateComponent}: ToolbarProps)
             direction: direction,
             name: name,
             parentId: linkedComponent!.parentId,
-            renderComponent: linkedComponent!.renderComponent,
+            renderComponent: component === "0" ? BlueComponent : GreenComponent,
             type: type
         }
 
@@ -80,6 +83,24 @@ function RenderForm({linkedComponent, updateComponent}: ToolbarProps)
                 <select value={direction} onChange={(e) => setDirection(e.target.value as 'row' | 'column')}>
                     <option value="row">Row</option>
                     <option value="column">Column</option>
+                </select>
+            </>
+        }
+
+        {
+            type === Type.Component &&
+            <>
+                <br />
+                <br />
+                
+                <p style={{margin:0}}>Component:</p>
+                
+                <select 
+                    value={component}
+                    onChange={(e) => setComponent(e.target.value as string)}
+                    >
+                    <option value="0">blue</option>
+                    <option value="1">green</option>
                 </select>
             </>
         }

@@ -30,8 +30,9 @@ function RenderComponent({id, components} : RenderComponentProps) {
         throw new Error("component not found");
     }
 
-    if (component.type === Type.Component) {
-        return <p>{component.name}</p> //component.renderComponent;
+    if (component.type === Type.Component ) {
+        const ComponentToRender = component.renderComponent;
+        return <ComponentToRender />;
     }
 
     if (component.type === Type.Container) {
