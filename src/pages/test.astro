@@ -62,13 +62,23 @@ import PageBuilder from '../components/pageBuilder/PageBuilder.jsx';
 		line-height: 1.6;
 	}
 
+	:root {
+		--vertical-line-left: -2.15em;
+		--horizontal-line-width: 1.75em;
+		--circle-size: 1em;
+		--ul-padding: 1.5em;
+		--line-height: 2em;
+		--circle-left: -1.12em;
+	}
+
 	p {
 		margin: 0;
 	}
 
 	ul {
 		list-style: none;
-		line-height: 2em;
+		line-height: var(--line-height);
+		padding-left: var(--ul-padding);
 	}
 
 	ul summary {
@@ -87,22 +97,22 @@ import PageBuilder from '../components/pageBuilder/PageBuilder.jsx';
 
 	ul li::before {
 		position: absolute;
-		left: -3.15em;
+		left: var(--vertical-line-left);
 		top: -1em;
 		border-left: 2px solid lightgray;
 		border-bottom: 2px solid lightgray;
 		content: '';
-		width: 2em;
+		width: var(--horizontal-line-width);
 		height: 2em;
 	}
 
 	ul li::after {
 		position: absolute;
-		left: -3.15em;
+		left: var(--vertical-line-left);
 		bottom: 0px;
 		border-left: 2px solid lightgray;
 		content: '';
-		width: 2em;
+		width: var(--horizontal-line-width);
 		height: 100%;
 	}
 
@@ -118,14 +128,14 @@ import PageBuilder from '../components/pageBuilder/PageBuilder.jsx';
 	ul summary::before {
 		position: absolute;
 		content: '+';
-		background: rgb(211, 217, 203);
+		background: rgb(113, 150, 113);
 		display: block;
-		width: 1em;
-		height: 1em;
+		width: var(--circle-size);
+		height: var(--circle-size);
 		line-height: 0.9em;
 		text-align: center;
 		top: 0.5em;
-		left: -1.6em;
+		left: var(--circle-left);
 		z-index: 1;
 		border-radius: 50em;
 	}
