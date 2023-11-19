@@ -31,7 +31,12 @@ function RenderComponent({id, components} : RenderComponentProps) {
     }
 
     if (component.type === Type.Component ) {
-        const ComponentToRender = component.renderComponent;
+        const ComponentToRender = component.renderer?.component;
+
+        if (ComponentToRender === undefined) {
+            throw new Error("Null Renderer");
+        }
+
         return <ComponentToRender />;
     }
 

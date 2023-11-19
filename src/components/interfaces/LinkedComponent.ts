@@ -3,8 +3,13 @@ export interface ILinkedComponent {
     name: string;
     parentId: number | null;
     type: Type;
-    renderComponent: any;
+    renderer: IRenderer | null | undefined;
     direction: 'column' | 'row'
+}
+
+export interface IRenderer {
+    name: string;
+    component: any;
 }
 
 export enum Type {

@@ -1,7 +1,7 @@
 import './toolBar.modules.css'
 import { Type, type ILinkedComponent } from "../interfaces/LinkedComponent";
 import { useEffect, useState } from 'react';
-import { BlueComponent, GreenComponent } from '../../template-components'
+import { renderers } from '../../template-components'
 
 interface ToolbarProps {
     linkedComponent: undefined | ILinkedComponent;
@@ -33,13 +33,13 @@ function RenderForm({linkedComponent, updateComponent}: ToolbarProps)
     const [name, setName] = useState<string>('');
     const [direction, setDirection] = useState<'row' | 'column'>('row');
     const [type, setType] = useState<Type>(Type.None)
-    const [component, setComponent] = useState<any>('0')
+    const [component, setComponent] = useState<string>('')
 
     useEffect(() => {
         setName(linkedComponent!.name)
         setDirection(linkedComponent!.direction);
         setType(linkedComponent?.type || Type.None);;
-        setComponent(linkedComponent?.renderComponent ?? '0');;
+        setComponent(linkedComponent!.renderer?.name ?? renderers[0].name);;
     }, [linkedComponent])
     
 
@@ -49,7 +49,7 @@ function RenderForm({linkedComponent, updateComponent}: ToolbarProps)
             direction: direction,
             name: name,
             parentId: linkedComponent!.parentId,
-            renderComponent: component === "0" ? BlueComponent : GreenComponent,
+            renderer: renderers.find(x => x.name === component),
             type: type
         }
 
@@ -98,9 +98,11 @@ function RenderForm({linkedComponent, updateComponent}: ToolbarProps)
                 <select 
                     value={component}
                     onChange={(e) => setComponent(e.target.value as string)}
-                    >
-                    <option value="0">blue</option>
-                    <option value="1">green</option>
+                >
+                    {
+                        renderers.map(x => (
+                            <option value={x.name} key={x.name}>{x.name}</option>))
+                    }
                 </select>
             </>
         }

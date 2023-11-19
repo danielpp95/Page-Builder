@@ -54,7 +54,7 @@ function RenderLinkedComponentsTree({
                 {
                     children.length > 0 && children
                         .map(x => (
-                            <li>
+                            <li key={x.id}>
                                 <RenderLinkedComponentsTree
                                     key = {x.id}
                                     component = {x}

@@ -6,7 +6,7 @@ export const templateComponent: ILinkedComponent =
     id: 0,
     name: 'page',
     parentId: null,
-    renderComponent: null,
+    renderer: null,
     type: Type.None,
     direction: "column"
 }
@@ -16,7 +16,7 @@ export const PageComponent: ILinkedComponent =
     id: 0,
     name: 'page',
     parentId: null,
-    renderComponent: null,
+    renderer: null,
     type: Type.Container,
     direction: "column"
 }
@@ -33,7 +33,7 @@ export function CreateNewLinkedComponent (
         id: id,
         name: name,
         parentId: parentId,
-        renderComponent: renderComponent,
+        renderer: renderComponent,
         type: type,
         direction: "row"
     }
