@@ -2,16 +2,18 @@
     padding: 1rem;
     background-color: var(--midnight-purple);
     box-sizing: border-box;
+    overflow-x: auto;
 }
 
 
 :root {
-    --vertical-line-left: -2.15em;
-    --horizontal-line-width: 1.75em;
-    --circle-size: 1em;
-    --ul-padding: 1.5em;
-    --line-height: 2em;
-    --circle-left: -1.12em;
+    --vertical-line-left: -2.75rem;
+    --horizontal-line-width: 2rem;
+    --circle-size: 1.6rem;
+    --circle-left: -2rem;
+    --ul-padding: 1.5rem;
+    --line-height: 2rem;
+    --font-size: 1.4rem;
 }
 
 p {
@@ -36,18 +38,17 @@ summary::marker {
 
 ul li {
     position: relative;
-    /* outline: 1px solid green; */
 }
 
 ul li::before {
     position: absolute;
-    left: var(--vertical-line-left);
-    top: -1em;
+    content: '';
     border-left: 2px solid lightgray;
     border-bottom: 2px solid lightgray;
-    content: '';
+    left: var(--vertical-line-left);
     width: var(--horizontal-line-width);
-    height: 2em;
+    top: -1rem;
+    height: 2rem;
 }
 
 ul li::after {
@@ -71,27 +72,44 @@ ul li:last-child::after {
 
 ul summary::before {
     position: absolute;
-    content: '+';
+    content: '＋';
     background: rgb(113, 150, 113);
     display: block;
     width: var(--circle-size);
     height: var(--circle-size);
-    line-height: 0.9em;
+    line-height: 1.5rem;
     text-align: center;
-    top: 0.5em;
+    top: 0.3rem;
     left: var(--circle-left);
     z-index: 1;
     border-radius: 50em;
+    font-size: 1rem;
 }
 
 ul details[open] > summary::before {
-    content: '-';
+    content: '－';
 }
 
 .tree-item {
     display: flex;
     flex-wrap: nowrap;
-    width: 500px;
+    font-size: 1.4rem;
+    align-items: center;
+    cursor: pointer;
+}
+
+.tree-item p {
+    text-wrap: nowrap;
+}
+
+.tree-item button {
+    padding: 0;
+    width: 1.4rem;
+    height: 1.4rem; 
+    text-align: center;
+    line-height: 1rem;
+    font-size: 1rem;
+    box-sizing: border-box;
 }
 
 .page-builder--tree-components >ul > li::before {

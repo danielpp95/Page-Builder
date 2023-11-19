@@ -79,15 +79,20 @@ function RenderComponent({
     removeNestedComponent,
     selectComponent})
 {
-    return <div key={component.id} className='tree-item'>
-        <p>
-            {component.name}
-        {
-            component.id !== 0 &&
-            <button onClick={() => removeNestedComponent(component.id)}>-</button>
-        }
-        <button onClick={() => addNestedComponentTo(component.id)}>+</button>
-        <button onClick={() => selectComponent(component.id)}>select</button>
-        </p> 
-    </div>
+    return (
+        <div key={component.id} className='tree-item'>
+            <p onClick={() => selectComponent(component.id)}>
+                {component.name}
+            </p> 
+            
+            {
+                component.id !== 0 &&
+                <button onClick={() => removeNestedComponent(component.id)}>-</button>
+            }
+            
+            <button onClick={() => addNestedComponentTo(component.id)}>
+                ＋
+            </button>
+            {/* <button onClick={() => selectComponent(component.id)}>select</button> */}
+    </div>)
 }
