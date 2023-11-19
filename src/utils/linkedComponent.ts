@@ -8,7 +8,7 @@ export const templateComponent: ILinkedComponent =
     parentId: null,
     renderComponent: null,
     type: Type.None,
-    direction: "row"
+    direction: "column"
 }
 
 export const PageComponent: ILinkedComponent =
@@ -18,7 +18,7 @@ export const PageComponent: ILinkedComponent =
     parentId: null,
     renderComponent: null,
     type: Type.Container,
-    direction: "row"
+    direction: "column"
 }
 
 export function CreateNewLinkedComponent (

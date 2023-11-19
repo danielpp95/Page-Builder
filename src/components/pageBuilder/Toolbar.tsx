@@ -81,8 +81,8 @@ function RenderForm({linkedComponent, updateComponent}: ToolbarProps)
                 <p style={{margin:0}}>Direction:</p>
                 
                 <select value={direction} onChange={(e) => setDirection(e.target.value as 'row' | 'column')}>
-                    <option value="row">Row</option>
                     <option value="column">Column</option>
+                    <option value="row">Row</option>
                 </select>
             </>
         }
