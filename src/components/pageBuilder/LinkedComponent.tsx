@@ -1,17 +1,21 @@
 import { Type, type ILinkedComponent } from "../interfaces/LinkedComponent";
+import CreateNewComponent from '../../template-components/InsertNewComponent/insertNewComponent'
+
 
 interface LinkedComponentProps {
     linkedComponents: ILinkedComponent[];
     addNestedComponentTo: (parentId: number) => void;
     removeNestedComponent: (id: number) => void;
     selectComponent: (id: number) => void;
+    addNewComponentAfter: (id: number) => void;
 }
 
 export default function LinkedComponent({
     linkedComponents,
     addNestedComponentTo,
     removeNestedComponent,
-    selectComponent} : LinkedComponentProps)
+    selectComponent,
+    addNewComponentAfter} : LinkedComponentProps)
 {
     return (
         <div>
@@ -19,6 +23,7 @@ export default function LinkedComponent({
                 id={0}
                 components={linkedComponents}
                 selectComponent={selectComponent}
+                addNewComponentAfter={addNewComponentAfter}
             />
         </div>
     )
@@ -28,12 +33,14 @@ interface RenderComponentProps {
     id: number;
     components: ILinkedComponent[];
     selectComponent: (id: number) => void;
+    addNewComponentAfter: (id: number) => void;
 }
 /// will only render leaf components
 function RenderComponent({
     id,
     components,
-    selectComponent} : RenderComponentProps)
+    selectComponent,
+    addNewComponentAfter} : RenderComponentProps)
 {
     const component = components.find(x => x.id === id);
 
@@ -53,8 +60,12 @@ function RenderComponent({
                 onClick={() => selectComponent(component.id)}
                 style={{cursor:'pointer'}}
             >
-            <ComponentToRender />
-        </div>)
+                <ComponentToRender />
+                <div onClick={() => addNewComponentAfter(component.parentId!)}>
+                    <CreateNewComponent />
+                </div>
+            </div>
+        )
     }
 
     if (component.type === Type.Container) {
@@ -67,7 +78,14 @@ function RenderComponent({
 
         return <div style={componentStyle}>
             {
-                children.map(x => <RenderComponent id={x.id} key={x.id} components={components} selectComponent={selectComponent} />)
+                children.map(x => (
+                    <RenderComponent
+                        id={x.id}
+                        key={x.id}
+                        components={components}
+                        selectComponent={selectComponent}
+                        addNewComponentAfter={addNewComponentAfter}
+                    />))
             }
         </div>
     }

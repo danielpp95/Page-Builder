@@ -1,5 +1,8 @@
 import type { ILinkedComponent } from "../components/interfaces/LinkedComponent";
 import { Type } from "../components/interfaces/LinkedComponent";
+import { renderers, RendererType } from '../template-components'
+
+const emptyComponent = renderers.find(x => x.name === RendererType.EmptyComponent);
 
 export const templateComponent: ILinkedComponent =
 {
@@ -7,7 +10,7 @@ export const templateComponent: ILinkedComponent =
     name: 'page',
     parentId: null,
     renderer: null,
-    type: Type.None,
+    type: Type.Component,
     direction: "column"
 }
 
@@ -18,6 +21,16 @@ export const PageComponent: ILinkedComponent =
     parentId: null,
     renderer: null,
     type: Type.Container,
+    direction: "column"
+}
+
+export const EmptyDefaultComponent: ILinkedComponent =
+{
+    id: 1,
+    name: 'Empty Component',
+    parentId: 0,
+    renderer: emptyComponent,
+    type: Type.Component,
     direction: "column"
 }
 
@@ -33,8 +46,8 @@ export function CreateNewLinkedComponent (
         id: id,
         name: name,
         parentId: parentId,
-        renderer: renderComponent,
-        type: type,
+        renderer: emptyComponent,
+        type: Type.Component,
         direction: "row"
     }
 }

@@ -8,11 +8,12 @@ import {
     CreateNewLinkedComponent,
     RemoveLinkedComponentRecursively,
     templateComponent,
-    PageComponent } from "../../utils/linkedComponent.ts";
+    PageComponent,
+    EmptyDefaultComponent } from "../../utils/linkedComponent.ts";
 
 export default function PageBuilder() {
     const [linkedComponents, setLinkedComponents] =
-        useState<ILinkedComponent[]>([PageComponent]);
+        useState<ILinkedComponent[]>([PageComponent, EmptyDefaultComponent]);
 
     const [selectedComponent, setSelectedComponent] =
         useState<undefined | ILinkedComponent>(undefined)
@@ -49,6 +50,29 @@ export default function PageBuilder() {
         setSelectedComponent(linkedComponents.find(x => x.id === id))
     }
 
+    function AddNewComponentAfter(id: number) : void
+    {
+        const index = linkedComponents.findIndex(x => x.id === id);
+
+        const existingIds = linkedComponents.map(x => x.id)
+
+        const maxExistingId = Math.max(...existingIds);
+
+        const newId = maxExistingId + 1;
+
+        setLinkedComponents([
+            ...linkedComponents.slice(0, index),
+            CreateNewLinkedComponent(
+                newId,
+                `name ${newId}`,
+                id,
+                Type.Component,
+                null
+            ),
+            ...linkedComponents.slice(index)
+        ])
+    }
+
     function updateComponent(component: ILinkedComponent): void {
         setLinkedComponents(prevState =>
             prevState.map(linkedComponent =>
@@ -71,6 +95,7 @@ export default function PageBuilder() {
                 addNestedComponentTo = {addChildComponentTo}
                 removeNestedComponent = {removeChildComponent}
                 selectComponent = {SelectComponent}
+                addNewComponentAfter = {AddNewComponentAfter}
             />
             <Toolbar linkedComponent = {selectedComponent} updateComponent = {updateComponent} />
         </section>
