@@ -8,6 +8,7 @@ interface LinkedComponentProps {
     removeNestedComponent: (id: number) => void;
     selectComponent: (id: number) => void;
     addNewComponentAfter: (id: number) => void;
+    addNewComponentUnder: (parentId: number, sort: number) => void;
 }
 
 export default function LinkedComponent({
@@ -15,7 +16,8 @@ export default function LinkedComponent({
     addNestedComponentTo,
     removeNestedComponent,
     selectComponent,
-    addNewComponentAfter} : LinkedComponentProps)
+    addNewComponentAfter,
+    addNewComponentUnder} : LinkedComponentProps)
 {
     return (
         <div>
@@ -24,6 +26,7 @@ export default function LinkedComponent({
                 components={linkedComponents}
                 selectComponent={selectComponent}
                 addNewComponentAfter={addNewComponentAfter}
+                addNewComponentUnder={addNewComponentUnder}
             />
         </div>
     )
@@ -34,13 +37,15 @@ interface RenderComponentProps {
     components: ILinkedComponent[];
     selectComponent: (id: number) => void;
     addNewComponentAfter: (id: number) => void;
+    addNewComponentUnder: (parentId: number, sort: number) => void;
 }
 /// will only render leaf components
 function RenderComponent({
     id,
     components,
     selectComponent,
-    addNewComponentAfter} : RenderComponentProps)
+    addNewComponentAfter,
+    addNewComponentUnder} : RenderComponentProps)
 {
     const component = components.find(x => x.id === id);
 
@@ -61,7 +66,7 @@ function RenderComponent({
                 style={{cursor:'pointer'}}
             >
                 <ComponentToRender />
-                <div onClick={() => addNewComponentAfter(component.parentId!)}>
+                <div onClick={() => addNewComponentUnder(component.parentId!, component.sort + 1)}>
                     <CreateNewComponent />
                 </div>
             </div>
@@ -78,13 +83,16 @@ function RenderComponent({
 
         return <div style={componentStyle}>
             {
-                children.map(x => (
+                children
+                    .sort((a, b) => a.sort - b.sort)
+                    .map(x => (
                     <RenderComponent
                         id={x.id}
                         key={x.id}
                         components={components}
                         selectComponent={selectComponent}
                         addNewComponentAfter={addNewComponentAfter}
+                        addNewComponentUnder={addNewComponentUnder}
                     />))
             }
         </div>

@@ -11,7 +11,8 @@ export const PageComponent: ILinkedComponent =
     parentId: null,
     renderer: null,
     type: Type.Container,
-    direction: "column"
+    direction: "column",
+    sort: 0,
 }
 
 export const EmptyDefaultComponent: ILinkedComponent =
@@ -21,7 +22,8 @@ export const EmptyDefaultComponent: ILinkedComponent =
     parentId: 0,
     renderer: emptyComponent,
     type: Type.Component,
-    direction: "column"
+    direction: "column",
+    sort: 0,
 }
 
 export function CreateNewLinkedComponent (
@@ -29,7 +31,8 @@ export function CreateNewLinkedComponent (
     name: string,
     parentId: number,
     type: Type,
-    renderComponent: any
+    renderComponent: any,
+    sort: number
 ):ILinkedComponent
 {
     return {
@@ -38,7 +41,8 @@ export function CreateNewLinkedComponent (
         parentId: parentId,
         renderer: emptyComponent,
         type: Type.Component,
-        direction: "row"
+        direction: "row",
+        sort: sort
     }
 }
 

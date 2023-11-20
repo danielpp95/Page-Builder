@@ -4,7 +4,8 @@ export interface ILinkedComponent {
     parentId: number | null;
     type: Type;
     renderer: IRenderer | null | undefined;
-    direction: 'column' | 'row'
+    direction: 'column' | 'row',
+    sort: number,
 }
 
 export interface IRenderer {

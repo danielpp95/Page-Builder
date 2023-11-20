@@ -50,7 +50,8 @@ function RenderForm({linkedComponent, updateComponent}: ToolbarProps)
             name: name,
             parentId: linkedComponent!.parentId,
             renderer: renderers.find(x => x.name === component),
-            type: type
+            type: type,
+            sort: linkedComponent!.sort
         }
 
         updateComponent(newComponent);

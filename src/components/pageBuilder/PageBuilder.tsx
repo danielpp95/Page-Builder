@@ -66,10 +66,50 @@ export default function PageBuilder() {
                 `name ${newId}`,
                 id,
                 Type.Component,
-                null
+                null,
+                0
             ),
             ...linkedComponents.slice(index)
         ])
+    }
+
+    function AddNewComponentUnder(parentId: number, order: number) : void {
+        const id = GetNextId();
+
+        const existingComponents = linkedComponents.filter(x => x.parentId !== parentId);
+
+        const newSortedComponents = linkedComponents
+            .filter(x => x.parentId === parentId)
+            .map(x => {
+                if (x.sort >= order)
+                {
+                    x.sort++;
+                }
+
+                return x;
+            });
+        
+        const newComponent = CreateNewLinkedComponent(
+            id,
+            `name ${id}`,
+            parentId,
+            Type.Component,
+            null,
+            order
+        );
+
+        const result = [...existingComponents, ...newSortedComponents, newComponent];
+
+        setLinkedComponents(result);
+    }
+
+    function GetNextId() : number
+    {
+        const existingIds = linkedComponents.map(x => x.id)
+
+        const maxExistingId = Math.max(...existingIds);
+
+        return maxExistingId + 1;
     }
 
     function updateComponent(component: ILinkedComponent): void {
@@ -95,6 +135,7 @@ export default function PageBuilder() {
                 removeNestedComponent = {removeChildComponent}
                 selectComponent = {SelectComponent}
                 addNewComponentAfter = {AddNewComponentAfter}
+                addNewComponentUnder = {AddNewComponentUnder}
             />
             <Toolbar linkedComponent = {selectedComponent} updateComponent = {updateComponent} />
         </section>
