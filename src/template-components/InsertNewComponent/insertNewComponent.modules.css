@@ -1,3 +1,10 @@
+.add-new-component {
+    height: 1px;
+    left: 0;
+    position: relative;
+    margin-top: -1rem;
+}
+
 .add-new-component::after {
     position: absolute;
     content: '';

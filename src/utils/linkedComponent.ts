@@ -4,16 +4,6 @@ import { renderers, RendererType } from '../template-components'
 
 const emptyComponent = renderers.find(x => x.name === RendererType.EmptyComponent);
 
-export const templateComponent: ILinkedComponent =
-{
-    id: 0,
-    name: 'page',
-    parentId: null,
-    renderer: null,
-    type: Type.Component,
-    direction: "column"
-}
-
 export const PageComponent: ILinkedComponent =
 {
     id: 0,

@@ -7,7 +7,6 @@ import { Type, type ILinkedComponent } from "../interfaces/LinkedComponent";
 import {
     CreateNewLinkedComponent,
     RemoveLinkedComponentRecursively,
-    templateComponent,
     PageComponent,
     EmptyDefaultComponent } from "../../utils/linkedComponent.ts";
 
