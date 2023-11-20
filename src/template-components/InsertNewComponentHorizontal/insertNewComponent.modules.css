@@ -1,11 +1,11 @@
-.add-new-component {
+.insert-new-component-horizontal {
     height: 0.4rem;
     left: 0;
     position: relative;
     margin-top: -0.4rem;
 }
 
-.add-new-component::after {
+.insert-new-component-horizontal::after {
     position: absolute;
     content: '';
     height: 0.4rem;
@@ -16,7 +16,7 @@
     z-index: 1;
 }
 
-.add-new-component::before {
+.insert-new-component-horizontal::before {
     position: absolute;
     content: '+';
     height: 20px;
@@ -32,7 +32,7 @@
     display: none;
 }
 
-.add-new-component:hover::after,
-.add-new-component:hover::before {
+.insert-new-component-horizontal:hover::after,
+.insert-new-component-horizontal:hover::before {
     display: block;
 }

@@ -1,5 +1,5 @@
 import { Type, type ILinkedComponent } from "../interfaces/LinkedComponent";
-import CreateNewComponent from '../../template-components/InsertNewComponent/insertNewComponent'
+import CreateNewComponent from '../../template-components/InsertNewComponentHorizontal/insertNewComponentHorizontal'
 
 
 interface LinkedComponentProps {
