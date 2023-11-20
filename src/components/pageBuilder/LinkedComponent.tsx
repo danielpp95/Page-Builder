@@ -81,7 +81,7 @@ function RenderComponent({
             flexDirection: component.direction
         };
 
-        return <div style={componentStyle}>
+        return <div style={component.style}>
             {
                 children
                     .sort((a, b) => a.sort - b.sort)

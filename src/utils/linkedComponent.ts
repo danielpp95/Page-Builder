@@ -13,6 +13,10 @@ export const PageComponent: ILinkedComponent =
     type: Type.Container,
     direction: "column",
     sort: 0,
+    style: {
+        display: "flex",
+        flexDirection: "column"
+    }
 }
 
 export const EmptyDefaultComponent: ILinkedComponent =

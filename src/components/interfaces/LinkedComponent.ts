@@ -1,11 +1,14 @@
+import type { CSSProperties } from "react";
+
 export interface ILinkedComponent {
     id: number;
     name: string;
     parentId: number | null;
     type: Type;
     renderer: IRenderer | null | undefined;
-    direction: 'column' | 'row',
+    direction?: 'column' | 'row',
     sort: number,
+    style?: CSSProperties | undefined;
 }
 
 export interface IRenderer {

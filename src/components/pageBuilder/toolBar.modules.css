@@ -1,5 +1,22 @@
 .page-builder--toolbar {
     padding: 1rem;
-    background-color: var(--midnight-purple);
+    /* background-color: var(--midnight-purple); */
+    background-color: rgb(242, 242, 242);
+    box-sizing: border-box;
+    color: rgb(109, 116, 115);
+}
+
+table th:nth-child(1){
+    text-align: end;
+}
+table th:nth-child(2){
+    text-align: left;
+    width: 100%;
+}
+
+input, select {
+    width: 100%;
+    padding: 0.5rem;
     box-sizing: border-box;
 }
+
