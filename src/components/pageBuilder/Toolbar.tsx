@@ -55,7 +55,7 @@ function RenderForm({linkedComponent, updateComponent}: ToolbarProps)
             parentId: linkedComponent!.parentId,
             renderer: renderers.find(x => x.name === component),
             type: type,
-            sort: linkedComponent!.sort
+            order: linkedComponent!.order
         }
 
         updateComponent(newComponent);
@@ -121,6 +121,9 @@ function RenderForm({linkedComponent, updateComponent}: ToolbarProps)
     }
 
     return <table>
+        <tbody>
+
+        
         <tr>
             <th>
                 <p style={{margin:0}}>Name</p>
@@ -183,5 +186,6 @@ function RenderForm({linkedComponent, updateComponent}: ToolbarProps)
                     </th>
                 </tr>
         }
+        </tbody>
     </table>
 }

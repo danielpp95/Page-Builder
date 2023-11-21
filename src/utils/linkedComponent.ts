@@ -12,7 +12,7 @@ export const PageComponent: ILinkedComponent =
     renderer: null,
     type: Type.Container,
     direction: "column",
-    sort: 0,
+    order: 0,
     style: {
         display: "flex",
         flexDirection: "column"
@@ -27,7 +27,7 @@ export const EmptyDefaultComponent: ILinkedComponent =
     renderer: emptyComponent,
     type: Type.Component,
     direction: "column",
-    sort: 0,
+    order: 0,
 }
 
 export function CreateNewLinkedComponent (
@@ -46,7 +46,7 @@ export function CreateNewLinkedComponent (
         renderer: emptyComponent,
         type: Type.Component,
         direction: "row",
-        sort: sort
+        order: sort
     }
 }
 

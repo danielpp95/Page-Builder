@@ -19,18 +19,21 @@ export default function PageBuilder() {
 
     function addChildComponentTo(parentId: number) : void
     {
-        const existingIds = linkedComponents.map(x => x.id)
+        const orders = linkedComponents
+            .filter(x => x.parentId === parentId)
+            .map(x => x.order);
+            
+        const order = Math.max(...orders) + 1;
 
-        const maxExistingId = Math.max(...existingIds);
-
-        const id = maxExistingId + 1;
+        const id = GetNextId();
 
         const newComponent = CreateNewLinkedComponent(
             id,
             `name: ${id}`,
             parentId,
             Type.Container,
-            null);
+            null,
+            order);
 
         setLinkedComponents([...linkedComponents, newComponent])
     }
@@ -51,25 +54,32 @@ export default function PageBuilder() {
 
     function AddNewComponentAfter(id: number) : void
     {
-        const index = linkedComponents.findIndex(x => x.id === id);
+        const component = linkedComponents.find(x => x.id === id)!;
 
-        const existingIds = linkedComponents.map(x => x.id)
+        const components = linkedComponents.filter(x => x.parentId !== component.parentId);
 
-        const maxExistingId = Math.max(...existingIds);
+        const componentsWithSameParent = linkedComponents
+            .filter(X => X.parentId === component.parentId)
+            .map(x => {
+                if (x.order > component.order) {
+                    x.order++;
+                }
 
-        const newId = maxExistingId + 1;
+                return x;
+            });
+
+        const newId = GetNextId();
 
         setLinkedComponents([
-            ...linkedComponents.slice(0, index),
+            ...linkedComponents,
             CreateNewLinkedComponent(
                 newId,
                 `name ${newId}`,
                 id,
                 Type.Component,
                 null,
-                0
+                component.order + 1
             ),
-            ...linkedComponents.slice(index)
         ])
     }
 
@@ -81,9 +91,9 @@ export default function PageBuilder() {
         const newSortedComponents = linkedComponents
             .filter(x => x.parentId === parentId)
             .map(x => {
-                if (x.sort >= order)
+                if (x.order >= order)
                 {
-                    x.sort++;
+                    x.order++;
                 }
 
                 return x;

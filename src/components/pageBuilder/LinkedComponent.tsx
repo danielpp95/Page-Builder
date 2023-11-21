@@ -66,7 +66,7 @@ function RenderComponent({
                 style={{cursor:'pointer'}}
             >
                 <ComponentToRender />
-                <div onClick={() => addNewComponentUnder(component.parentId!, component.sort + 1)}>
+                <div onClick={() => addNewComponentUnder(component.parentId!, component.order + 1)}>
                     <CreateNewComponent />
                 </div>
             </div>
@@ -84,7 +84,7 @@ function RenderComponent({
         return <div style={component.style}>
             {
                 children
-                    .sort((a, b) => a.sort - b.sort)
+                    .sort((a, b) => a.order - b.order)
                     .map(x => (
                     <RenderComponent
                         id={x.id}

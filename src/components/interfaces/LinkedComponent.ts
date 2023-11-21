@@ -7,7 +7,7 @@ export interface ILinkedComponent {
     type: Type;
     renderer: IRenderer | null | undefined;
     direction?: 'column' | 'row',
-    sort: number,
+    order: number,
     style?: CSSProperties | undefined;
 }
 
