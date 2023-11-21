@@ -1,6 +1,6 @@
 .page-builder--tree-components {
     padding: 1rem;
-    background-color: var(--midnight-purple);
+    /* background-color: var(--midnight-purple); */
     box-sizing: border-box;
     overflow-x: auto;
 }
@@ -118,8 +118,16 @@ ul details[open] > summary::before {
     display: none;
 }
 
-.tree-item-selected {
-    background-color: var(--intense-purple);
+.tree-item-selected,
+.tree-item-selected:hover {
+    background-color: rgb(220, 220, 220) !important;
+    margin-left: -50rem;
+    padding-left: 50.5rem;
+    margin-right: -10rem;
+}
+
+.tree-item:hover {
+    background-color: rgb(230, 230, 230);
     margin-left: -50rem;
     padding-left: 50.5rem;
     margin-right: -10rem;

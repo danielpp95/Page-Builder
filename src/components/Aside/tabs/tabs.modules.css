@@ -1,0 +1,14 @@
+.tabs {
+    display: flex;
+    width: 100%;
+    justify-content: space-evenly;
+    padding: 0.5rem;
+    border-bottom: 1px solid var(--outline);
+    box-sizing: border-box;
+}
+
+.tabs button {
+    display: block;
+    width: 75px;
+    height: 24px;
+}

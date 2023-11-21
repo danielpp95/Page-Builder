@@ -1,0 +1,6 @@
+.header {
+    background-color: rgb(226, 226, 226);
+    outline: 1px solid var(--outline);
+    padding: 0.5rem;
+    box-sizing: border-box;
+}

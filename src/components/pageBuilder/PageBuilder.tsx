@@ -3,6 +3,8 @@ import TreeComponents from './TreeComponents'
 import Toolbar from './Toolbar'
 import LinkedComponent from './LinkedComponent'
 import './pageBuilder.modules.css'
+import Header from '../header/header.tsx'
+import Aside from '../Aside/Aside.tsx'
 import { Type, type ILinkedComponent } from "../interfaces/LinkedComponent";
 import {
     CreateNewLinkedComponent,
@@ -131,14 +133,23 @@ export default function PageBuilder() {
     }
 
     return (
+        <>
+            <Header />
+        
         <section id='pageBuilder'>
-            <TreeComponents
+            {/* <TreeComponents
                 linkedComponents = {linkedComponents}
                 addNestedComponentTo = {addChildComponentTo}
                 removeNestedComponent = {removeChildComponent}
                 selectComponent = {SelectComponent}
                 selectedComponent = {selectedComponent}
-            />
+            /> */}
+
+<div style={{
+                width: '100vw',
+                display: 'flex',
+                justifyContent: 'space-between'
+            }}>
             <LinkedComponent
                 linkedComponents = {linkedComponents}
                 addNestedComponentTo = {addChildComponentTo}
@@ -147,7 +158,23 @@ export default function PageBuilder() {
                 addNewComponentAfter = {AddNewComponentAfter}
                 addNewComponentUnder = {AddNewComponentUnder}
             />
-            <Toolbar linkedComponent = {selectedComponent} updateComponent = {updateComponent} />
+            {/* <Toolbar
+            linkedComponent = {selectedComponent}
+            updateComponent = {updateComponent} /> */}
+            <Aside
+                LinkedComponents = {linkedComponents}
+                AddChildComponentTo = {addChildComponentTo}
+                RemoveChildComponent = {removeChildComponent}
+                SelectComponent = {SelectComponent}
+                // AddNewComponentAfter = {AddNewComponentAfter}
+                // AddNewComponentUnder = {AddNewComponentUnder}
+                SelectedComponent = {selectedComponent!}
+                UpdateComponent = {updateComponent}
+
+            />
+
+</div>
         </section>
+        </>
     )
 }
