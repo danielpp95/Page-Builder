@@ -33,37 +33,22 @@ export default function Aside({
         <aside className='Aside'>
             {/* <TabsComponent SelectPage={SelectPage} /> */}
             <div className="aside-body">
-                {/* {
-                    selectedTab === Tabs.Tree && (
-                        <ComponentsTree
-                            linkedComponents = {LinkedComponents}
-                            addNestedComponentTo = {AddChildComponentTo}
-                            removeNestedComponent = {RemoveChildComponent}
-                            selectComponent = {SelectComponent}
-                            selectedComponent = {SelectedComponent}
-                        />)
-                }
-                {
-                    selectedTab === Tabs.Properties && (
-                        <Toolbar
-                            updateComponent = {UpdateComponent}
-                            linkedComponent = {SelectedComponent}
-                        />)
-                } */}
+                <div className="aside-body-content">
+                    <Toolbar
+                        updateComponent = {UpdateComponent}
+                        linkedComponent = {SelectedComponent}
+                    />
+                </div>
 
-
-                <Toolbar
-                    updateComponent = {UpdateComponent}
-                    linkedComponent = {SelectedComponent}
-                />
-
-                <ComponentsTree
-                    linkedComponents = {LinkedComponents}
-                    addNestedComponentTo = {AddChildComponentTo}
-                    removeNestedComponent = {RemoveChildComponent}
-                    selectComponent = {SelectComponent}
-                    selectedComponent = {SelectedComponent}
-                />
+                <div className="aside-body-content">
+                    <ComponentsTree
+                        linkedComponents = {LinkedComponents}
+                        addNestedComponentTo = {AddChildComponentTo}
+                        removeNestedComponent = {RemoveChildComponent}
+                        selectComponent = {SelectComponent}
+                        selectedComponent = {SelectedComponent}
+                    />
+                </div>
             </div>
         </aside>
     )
