@@ -60,7 +60,7 @@ function RenderLinkedComponentsTree({
             <ul>
                 {
                     children.length > 0 && children
-                        .sort((a, b) => a.sort - b.sort)
+                    .sort((a, b) => a.order - b.order)
                         .map(x => (
                             <li key={x.id}>
                                 <RenderLinkedComponentsTree
