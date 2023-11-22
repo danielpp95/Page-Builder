@@ -1,6 +1,7 @@
 import { Type, type ILinkedComponent } from "../interfaces/LinkedComponent";
 import CreateNewComponent from '../../template-components/InsertNewComponentHorizontal/insertNewComponentHorizontal'
 
+import "./LinkedComponent.modules.css";
 
 interface LinkedComponentProps {
     linkedComponents: ILinkedComponent[];
@@ -20,7 +21,7 @@ export default function LinkedComponent({
     addNewComponentUnder} : LinkedComponentProps)
 {
     return (
-        <div>
+        <div className="linked-component">
             <RenderComponent
                 id={0}
                 components={linkedComponents}

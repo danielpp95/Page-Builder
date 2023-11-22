@@ -8,4 +8,9 @@
 
 .aside-body {
     padding: 1rem 2rem;
+    display: grid;
+    grid-template-rows: 3fr 2fr;
+    height: 100%;
+    max-height: calc(100vh - var(--header-height));
+    box-sizing: border-box;
 }

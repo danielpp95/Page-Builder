@@ -31,9 +31,9 @@ export default function Aside({
 
     return (
         <aside className='Aside'>
-            <TabsComponent SelectPage={SelectPage} />
+            {/* <TabsComponent SelectPage={SelectPage} /> */}
             <div className="aside-body">
-                {
+                {/* {
                     selectedTab === Tabs.Tree && (
                         <ComponentsTree
                             linkedComponents = {LinkedComponents}
@@ -49,7 +49,21 @@ export default function Aside({
                             updateComponent = {UpdateComponent}
                             linkedComponent = {SelectedComponent}
                         />)
-                }
+                } */}
+
+
+                <Toolbar
+                    updateComponent = {UpdateComponent}
+                    linkedComponent = {SelectedComponent}
+                />
+
+                <ComponentsTree
+                    linkedComponents = {LinkedComponents}
+                    addNestedComponentTo = {AddChildComponentTo}
+                    removeNestedComponent = {RemoveChildComponent}
+                    selectComponent = {SelectComponent}
+                    selectedComponent = {SelectedComponent}
+                />
             </div>
         </aside>
     )

@@ -18,7 +18,7 @@ export default function Toolbar({
 {
     return (
         <div className='page-builder--toolbar'>
-            <h2>Toolbar</h2>
+            <h2>Properties</h2>
             {
                 linkedComponent === undefined && 
                 <p>nothing selected... 😒</p>

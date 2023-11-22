@@ -1,6 +1,6 @@
 .page-builder{
     margin: 0;
-    height: calc(100vh - var(--header-height));
+    max-height: calc(100vh - var(--header-height));
     display: grid;
     box-sizing: border-box;
 }

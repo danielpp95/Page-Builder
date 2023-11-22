@@ -1,6 +1,7 @@
 .page-builder--tree-components {
     box-sizing: border-box;
     overflow-x: hidden;
+    overflow-y: auto;
 }
 
 :root {
