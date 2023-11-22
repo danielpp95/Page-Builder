@@ -45,21 +45,6 @@ function RenderForm({linkedComponent, updateComponent}: ToolbarProps)
         setType(linkedComponent?.type || Type.None);;
         setComponent(linkedComponent!.renderer?.name ?? renderers[0].name);;
     }, [linkedComponent])
-    
-
-    function handleUpdateComponent() {
-        const newComponent: ILinkedComponent = {
-            id: linkedComponent!.id,
-            // direction: direction,
-            name: name,
-            parentId: linkedComponent!.parentId,
-            renderer: renderers.find(x => x.name === component),
-            type: type,
-            order: linkedComponent!.order
-        }
-
-        updateComponent(newComponent);
-    }
 
     function handleNameChange(name: string)
     {
@@ -119,72 +104,50 @@ function RenderForm({linkedComponent, updateComponent}: ToolbarProps)
         updateComponent(newComponent);
     }
 
-    return <table>
-        <tbody>
+    return <div className="properties">
+        {/* NAME */}
+        <span style={{margin:0}}>Name</span>
+        <input
+            type="text"
+            onChange={(e) => handleNameChange(e.target.value)}
+            value={name}/>
 
-        
-        <tr>
-            <th>
-                <p style={{margin:0}}>Name</p>
-            </th>
-            <th>
-                <input
-                    type="text"
-                    onChange={(e) => handleNameChange(e.target.value)}
-                    value={name}/>
-            </th>
-        </tr>
+        {/* TYPE */}
+        <span style={{margin:0}}>Type</span>
+        <select value={type} onChange={(e) => handleTypeChange(Number(e.target.value) as Type)}>
+            <option value={Type.Container}>Container</option>
+            <option value={Type.Component}>Component</option>
+        </select>
 
-        <tr>
-            <th>
-                <p style={{margin:0}}>Type</p>
-            </th>
-            <th>
-                <select value={type} onChange={(e) => handleTypeChange(Number(e.target.value) as Type)}>
-                    <option value={Type.Container}>Container</option>
-                    <option value={Type.Component}>Component</option>
-                </select>
-            </th>
-        </tr>
-        
-
-
+        {/* CONTAINER DIRECTION */}
         {
             type === Type.Container &&
-                <tr>
-                    <th>
-                        <p style={{margin:0}}>Direction</p>
-                    </th>
-                    <th>
-                        <select value={direction} onChange={(e) => handleDirectionChange(e.target.value as FlexDirection)}>
-                            <option value="column">Column</option>
-                            <option value="column-reverse">Column reverse</option>
-                            <option value="row">Row</option>
-                            <option value="row-reverse">Row reverse</option>
-                        </select>
-                    </th>
-                </tr>
+            <>
+                <span style={{margin:0}}>Direction</span>
+                <select value={direction} onChange={(e) => handleDirectionChange(e.target.value as FlexDirection)}>
+                    <option value="column">Column</option>
+                    <option value="column-reverse">Column reverse</option>
+                    <option value="row">Row</option>
+                    <option value="row-reverse">Row reverse</option>
+                </select>
+            </>
         }
 
+        {/* COMPONENT */}
         {
             type === Type.Component &&
-                <tr>
-                    <th>
-                        <p style={{margin:0}}>Component</p>
-                    </th>
-                    <th>
-                        <select 
-                            value={component}
-                            onChange={(e) => handleRendererChange(e.target.value as string)}
-                        >
-                            {
-                                renderers.map(x => (
-                                    <option value={x.name} key={x.name}>{x.name}</option>))
-                            }
-                        </select>
-                    </th>
-                </tr>
+                <>
+                    <span style={{margin:0}}>Component</span>
+                    <select 
+                        value={component}
+                        onChange={(e) => handleRendererChange(e.target.value as string)}
+                    >
+                        {
+                            renderers.map(x => (
+                                <option value={x.name} key={x.name}>{x.name}</option>))
+                        }
+                    </select>
+                </>
         }
-        </tbody>
-    </table>
+    </div>
 }
