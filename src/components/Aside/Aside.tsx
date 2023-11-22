@@ -10,7 +10,7 @@ interface AsideProps {
     SelectedComponent: ILinkedComponent;
     LinkedComponents: ILinkedComponent[];
     AddChildComponentTo: (parentId: number) => void;
-    RemoveChildComponent: (id: number) => void;
+    removeComponent: (id: number) => void;
     SelectComponent: (id: number) => void;
     UpdateComponent: (component: ILinkedComponent) => void;
 }
@@ -18,20 +18,13 @@ interface AsideProps {
 export default function Aside({
     LinkedComponents,
     AddChildComponentTo,
-    RemoveChildComponent,
+    removeComponent,
     SelectComponent,
     SelectedComponent,
     UpdateComponent,
 }: AsideProps) {
-    const [selectedTab, setSelectedTab] = useState<Tabs>(Tabs.Tree)
-
-    function SelectPage(tab: Tabs){
-        setSelectedTab(tab)
-    }
-
     return (
         <aside className='Aside'>
-            {/* <TabsComponent SelectPage={SelectPage} /> */}
             <div className="aside-body">
                 <div className="aside-body-content">
                     <Toolbar
@@ -43,8 +36,8 @@ export default function Aside({
                 <div className="aside-body-content">
                     <ComponentsTree
                         linkedComponents = {LinkedComponents}
-                        addNestedComponentTo = {AddChildComponentTo}
-                        removeNestedComponent = {RemoveChildComponent}
+                        AddChildComponentTo = {AddChildComponentTo}
+                        removeComponent = {removeComponent}
                         selectComponent = {SelectComponent}
                         selectedComponent = {SelectedComponent}
                     />

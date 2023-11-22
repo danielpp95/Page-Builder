@@ -11,12 +11,11 @@ import {
 
 import './pageBuilder.modules.css'
 
-export default function PageBuilder() {
-    const [linkedComponents, setLinkedComponents] =
-        useState<ILinkedComponent[]>([PageComponent, EmptyDefaultComponent]);
+export default function PageBuilder()
+{
+    const [linkedComponents, setLinkedComponents] = useState<ILinkedComponent[]>([PageComponent, EmptyDefaultComponent]);
 
-    const [selectedComponent, setSelectedComponent] =
-        useState<undefined | ILinkedComponent>(undefined)
+    const [selectedComponent, setSelectedComponent] = useState<undefined | ILinkedComponent>(undefined)
 
     const [showAside, setShowAside] = useState<boolean>(true)
 
@@ -38,7 +37,16 @@ export default function PageBuilder() {
             null,
             order);
 
-        setLinkedComponents([...linkedComponents, newComponent])
+        const newComponentsList = linkedComponents.map(x => {
+            if (x.id === parentId)
+            {
+                x.type = Type.Container;
+            }
+
+            return x;
+        })
+
+        setLinkedComponents([...newComponentsList, newComponent])
     }
 
     function removeChildComponent(id: number) : void
@@ -148,8 +156,6 @@ export default function PageBuilder() {
             <section id='pageBuilder' className={`page-builder page-builder--${showAside ? 'aside' : 'full-screen'}`}>
                 <LinkedComponent
                     linkedComponents = {linkedComponents}
-                    addNestedComponentTo = {addChildComponentTo}
-                    removeNestedComponent = {removeChildComponent}
                     selectComponent = {SelectComponent}
                     addNewComponentAfter = {AddNewComponentAfter}
                     addNewComponentUnder = {AddNewComponentUnder}
@@ -159,7 +165,7 @@ export default function PageBuilder() {
                     showAside && <Aside
                         LinkedComponents = {linkedComponents}
                         AddChildComponentTo = {addChildComponentTo}
-                        RemoveChildComponent = {removeChildComponent}
+                        removeComponent = {removeChildComponent}
                         SelectComponent = {SelectComponent}
                         SelectedComponent = {selectedComponent!}
                         UpdateComponent = {updateComponent}

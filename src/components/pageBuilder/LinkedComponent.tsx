@@ -5,8 +5,6 @@ import "./LinkedComponent.modules.css";
 
 interface LinkedComponentProps {
     linkedComponents: ILinkedComponent[];
-    addNestedComponentTo: (parentId: number) => void;
-    removeNestedComponent: (id: number) => void;
     selectComponent: (id: number) => void;
     addNewComponentAfter: (id: number) => void;
     addNewComponentUnder: (parentId: number, sort: number) => void;
@@ -14,8 +12,6 @@ interface LinkedComponentProps {
 
 export default function LinkedComponent({
     linkedComponents,
-    addNestedComponentTo,
-    removeNestedComponent,
     selectComponent,
     addNewComponentAfter,
     addNewComponentUnder} : LinkedComponentProps)

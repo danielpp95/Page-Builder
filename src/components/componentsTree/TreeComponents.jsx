@@ -2,8 +2,8 @@ import './treeComponents.modules.css'
 
 export default function TreeComponents({
     linkedComponents,
-    addNestedComponentTo,
-    removeNestedComponent,
+    AddChildComponentTo,
+    removeComponent,
     selectComponent,
     selectedComponent}) {
     return (
@@ -14,8 +14,8 @@ export default function TreeComponents({
                     <RenderLinkedComponentsTree
                         component={linkedComponents.find(x => x.id === 0)}
                         components={[...linkedComponents]}
-                        addNestedComponentTo={addNestedComponentTo}
-                        removeNestedComponent={removeNestedComponent}
+                        addChildComponentTo={AddChildComponentTo}
+                        removeComponent={removeComponent}
                         selectComponent={selectComponent}
                         selectedComponent = {selectedComponent}
                     />
@@ -29,8 +29,8 @@ function RenderLinkedComponentsTree({
     component,
     components,
     deepLevel = 0,
-    addNestedComponentTo,
-    removeNestedComponent,
+    addChildComponentTo,
+    removeComponent,
     selectComponent,
     selectedComponent})
 {
@@ -39,8 +39,8 @@ function RenderLinkedComponentsTree({
     if (children.length == 0) {
         return <RenderComponent
             component = {component}
-            addNestedComponentTo = {addNestedComponentTo}
-            removeNestedComponent = {removeNestedComponent}
+            addChildComponentTo = {addChildComponentTo}
+            removeComponent = {removeComponent}
             selectComponent={selectComponent}
             selectedComponent={selectedComponent}
         />
@@ -51,8 +51,8 @@ function RenderLinkedComponentsTree({
             <summary>
                 <RenderComponent
                     component = {component}
-                    addNestedComponentTo = {addNestedComponentTo}
-                    removeNestedComponent = {removeNestedComponent}
+                    addChildComponentTo = {addChildComponentTo}
+                    removeComponent = {removeComponent}
                     selectComponent={selectComponent}
                     selectedComponent={selectedComponent}
                 />
@@ -69,8 +69,8 @@ function RenderLinkedComponentsTree({
                                     components = {components}
                                     deepLevel = {deepLevel}
                                     parentId = {component.id}
-                                    addNestedComponentTo = {addNestedComponentTo}
-                                    removeNestedComponent = {removeNestedComponent}
+                                    addChildComponentTo = {addChildComponentTo}
+                                    removeComponent = {removeComponent}
                                     selectComponent = {selectComponent}
                                     selectedComponent = {selectedComponent}
                                 />
@@ -84,8 +84,8 @@ function RenderLinkedComponentsTree({
 
 function RenderComponent({
     component,
-    addNestedComponentTo,
-    removeNestedComponent,
+    addChildComponentTo,
+    removeComponent,
     selectComponent,
     selectedComponent})
 {
@@ -102,11 +102,11 @@ function RenderComponent({
             {
                 component.id !== 0 &&
                     <button
-                        onClick={() => removeNestedComponent(component.id)}
+                        onClick={() => removeComponent(component.id)}
                     >-</button>
             }
             
-            <button onClick={() => addNestedComponentTo(component.id)}>
+            <button onClick={() => addChildComponentTo(component.id)}>
                 ＋
             </button>
         </div>

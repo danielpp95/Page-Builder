@@ -38,7 +38,6 @@ function RenderForm({linkedComponent, updateComponent}: ToolbarProps)
     const [type, setType] = useState<Type>(Type.None)
     const [component, setComponent] = useState<string>('')
     const [componentStyles, setComponentStyles] = useState<CSSProperties | undefined>(undefined)
-    const [rendererName, setRendererName] = useState<string>('')
 
     useEffect(() => {
         setName(linkedComponent!.name)
@@ -117,7 +116,6 @@ function RenderForm({linkedComponent, updateComponent}: ToolbarProps)
             renderer: renderers.find(x => x.name === name)
         }
 
-        setRendererName(name);
         updateComponent(newComponent);
     }
 
