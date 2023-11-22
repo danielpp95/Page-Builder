@@ -1,0 +1,14 @@
+.page-builder{
+    margin: 0;
+    height: calc(100vh - var(--header-height));
+    display: grid;
+    box-sizing: border-box;
+}
+
+.page-builder--full-screen {
+    grid-template-columns: 1fr;
+}
+
+.page-builder--aside {
+    grid-template-columns: 8fr 3fr;
+}

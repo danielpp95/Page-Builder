@@ -1,6 +1,11 @@
 .Aside {
     background-color: var(--aside--white);
     border-left: 1px solid var(--outline);
-    width: 225px;
+    width: 20em;
     box-sizing: border-box;
+    width: 100%;
+}
+
+.aside-body {
+    padding: 1rem 2rem;
 }

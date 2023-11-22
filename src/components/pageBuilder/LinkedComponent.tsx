@@ -63,7 +63,7 @@ function RenderComponent({
         return (
             <div
                 onClick={() => selectComponent(component.id)}
-                style={{cursor:'pointer'}}
+                style={{cursor:'pointer', width: '100%'}}
             >
                 <ComponentToRender />
                 <div onClick={() => addNewComponentUnder(component.parentId!, component.order + 1)}>

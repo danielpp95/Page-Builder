@@ -1,16 +1,15 @@
-import React, { useState } from 'react'
-import TreeComponents from './TreeComponents'
-import Toolbar from './Toolbar'
-import LinkedComponent from './LinkedComponent'
-import './pageBuilder.modules.css'
-import Header from '../header/header.tsx'
-import Aside from '../Aside/Aside.tsx'
-import { Type, type ILinkedComponent } from "../interfaces/LinkedComponent";
+import { useState } from 'react'
+import LinkedComponent from '../../components/pageBuilder/LinkedComponent.tsx'
+import Header from '../../components/header/header.tsx'
+import Aside from '../../components/Aside/Aside.tsx'
+import { Type, type ILinkedComponent } from "../../components/interfaces/LinkedComponent.ts";
 import {
     CreateNewLinkedComponent,
     RemoveLinkedComponentRecursively,
     PageComponent,
     EmptyDefaultComponent } from "../../utils/linkedComponent.ts";
+
+import './pageBuilder.modules.css'
 
 export default function PageBuilder() {
     const [linkedComponents, setLinkedComponents] =
@@ -75,7 +74,8 @@ export default function PageBuilder() {
         const newId = GetNextId();
 
         setLinkedComponents([
-            ...linkedComponents,
+            ...components,
+            ...componentsWithSameParent,
             CreateNewLinkedComponent(
                 newId,
                 `name ${newId}`,
@@ -134,7 +134,9 @@ export default function PageBuilder() {
     function updateComponent(component: ILinkedComponent): void {
         setLinkedComponents(prevState =>
             prevState.map(linkedComponent =>
-                linkedComponent.id === component.id ? { ...component } : linkedComponent
+                linkedComponent.id === component.id
+                    ? { ...component }
+                    : linkedComponent
             )
         );
     }
@@ -143,45 +145,27 @@ export default function PageBuilder() {
         <>
             <Header ToggleAside={toggleAside} />
         
-        <section id='pageBuilder'>
-            {/* <TreeComponents
-                linkedComponents = {linkedComponents}
-                addNestedComponentTo = {addChildComponentTo}
-                removeNestedComponent = {removeChildComponent}
-                selectComponent = {SelectComponent}
-                selectedComponent = {selectedComponent}
-            /> */}
+            <section id='pageBuilder' className={`page-builder page-builder--${showAside ? 'aside' : 'full-screen'}`}>
+                <LinkedComponent
+                    linkedComponents = {linkedComponents}
+                    addNestedComponentTo = {addChildComponentTo}
+                    removeNestedComponent = {removeChildComponent}
+                    selectComponent = {SelectComponent}
+                    addNewComponentAfter = {AddNewComponentAfter}
+                    addNewComponentUnder = {AddNewComponentUnder}
+                />
 
-<div style={{
-                width: '100vw',
-                display: 'flex',
-                justifyContent: 'space-between'
-            }}>
-            <LinkedComponent
-                linkedComponents = {linkedComponents}
-                addNestedComponentTo = {addChildComponentTo}
-                removeNestedComponent = {removeChildComponent}
-                selectComponent = {SelectComponent}
-                addNewComponentAfter = {AddNewComponentAfter}
-                addNewComponentUnder = {AddNewComponentUnder}
-            />
-            {/* <Toolbar
-            linkedComponent = {selectedComponent}
-            updateComponent = {updateComponent} /> */
-            showAside && <Aside
-                LinkedComponents = {linkedComponents}
-                AddChildComponentTo = {addChildComponentTo}
-                RemoveChildComponent = {removeChildComponent}
-                SelectComponent = {SelectComponent}
-                // AddNewComponentAfter = {AddNewComponentAfter}
-                // AddNewComponentUnder = {AddNewComponentUnder}
-                SelectedComponent = {selectedComponent!}
-                UpdateComponent = {updateComponent}
-            />
-        }
-
-</div>
-        </section>
+                {
+                    showAside && <Aside
+                        LinkedComponents = {linkedComponents}
+                        AddChildComponentTo = {addChildComponentTo}
+                        RemoveChildComponent = {removeChildComponent}
+                        SelectComponent = {SelectComponent}
+                        SelectedComponent = {selectedComponent!}
+                        UpdateComponent = {updateComponent}
+                    />
+                }
+            </section>
         </>
     )
 }

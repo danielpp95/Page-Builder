@@ -1,6 +1,6 @@
 import TabsComponent from './tabs/tabs.tsx'
-import ComponentsTree from '../pageBuilder/TreeComponents.jsx'
-import Toolbar from '../pageBuilder/Toolbar.tsx'
+import ComponentsTree from '../componentsTree/TreeComponents.jsx'
+import Toolbar from '../componentPropertyEditor/componentPropertyEditor.tsx'
 import './aside.modules.css'
 import { Tabs } from './Constants.ts'
 import { useState, type ReactNode } from 'react'
@@ -32,26 +32,25 @@ export default function Aside({
     return (
         <aside className='Aside'>
             <TabsComponent SelectPage={SelectPage} />
-            
-
-            
-            {
-                selectedTab === Tabs.Tree && (
-                    <ComponentsTree
-                        linkedComponents = {LinkedComponents}
-                        addNestedComponentTo = {AddChildComponentTo}
-                        removeNestedComponent = {RemoveChildComponent}
-                        selectComponent = {SelectComponent}
-                        selectedComponent = {SelectedComponent}
-                    />)
-            }
-            {
-                selectedTab === Tabs.Properties && (
-                    <Toolbar
-                        updateComponent = {UpdateComponent}
-                        linkedComponent = {SelectedComponent}
-                    />)
-            }
+            <div className="aside-body">
+                {
+                    selectedTab === Tabs.Tree && (
+                        <ComponentsTree
+                            linkedComponents = {LinkedComponents}
+                            addNestedComponentTo = {AddChildComponentTo}
+                            removeNestedComponent = {RemoveChildComponent}
+                            selectComponent = {SelectComponent}
+                            selectedComponent = {SelectedComponent}
+                        />)
+                }
+                {
+                    selectedTab === Tabs.Properties && (
+                        <Toolbar
+                            updateComponent = {UpdateComponent}
+                            linkedComponent = {SelectedComponent}
+                        />)
+                }
+            </div>
         </aside>
     )
 }

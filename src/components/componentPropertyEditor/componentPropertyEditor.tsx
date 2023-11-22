@@ -1,7 +1,8 @@
-import './toolBar.modules.css'
-import { Type, type ILinkedComponent } from "../interfaces/LinkedComponent";
 import { useEffect, useState, type CSSProperties } from 'react';
 import { renderers } from '../../template-components'
+import { Type, type ILinkedComponent } from "../interfaces/LinkedComponent";
+
+import './componentPropertyEditor.modules.css'
 
 interface ToolbarProps {
     linkedComponent: undefined | ILinkedComponent;
