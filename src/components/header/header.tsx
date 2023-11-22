@@ -1,9 +1,13 @@
 import React from 'react'
 import './header.modules.css'
-export default function Header() {
+
+export default function Header({
+  ToggleAside
+}: any) {
   return (
     <div className='header'>
-        <p>Header</p>
+        <h1>Page Builder</h1>
+        <button onClick={ToggleAside}>Show</button>
     </div>
   )
 }

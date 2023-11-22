@@ -1,6 +1,6 @@
 .Aside {
     background-color: var(--aside--white);
     border-left: 1px solid var(--outline);
-    max-width: 500px;
+    width: 225px;
     box-sizing: border-box;
 }

@@ -19,6 +19,8 @@ export default function PageBuilder() {
     const [selectedComponent, setSelectedComponent] =
         useState<undefined | ILinkedComponent>(undefined)
 
+    const [showAside, setShowAside] = useState<boolean>(true)
+
     function addChildComponentTo(parentId: number) : void
     {
         const orders = linkedComponents
@@ -85,6 +87,11 @@ export default function PageBuilder() {
         ])
     }
 
+    function toggleAside() {
+        console.log(12)
+        setShowAside(!showAside);
+    }
+
     function AddNewComponentUnder(parentId: number, order: number) : void {
         const id = GetNextId();
 
@@ -134,7 +141,7 @@ export default function PageBuilder() {
 
     return (
         <>
-            <Header />
+            <Header ToggleAside={toggleAside} />
         
         <section id='pageBuilder'>
             {/* <TreeComponents
@@ -160,8 +167,8 @@ export default function PageBuilder() {
             />
             {/* <Toolbar
             linkedComponent = {selectedComponent}
-            updateComponent = {updateComponent} /> */}
-            <Aside
+            updateComponent = {updateComponent} /> */
+            showAside && <Aside
                 LinkedComponents = {linkedComponents}
                 AddChildComponentTo = {addChildComponentTo}
                 RemoveChildComponent = {removeChildComponent}
@@ -170,8 +177,8 @@ export default function PageBuilder() {
                 // AddNewComponentUnder = {AddNewComponentUnder}
                 SelectedComponent = {selectedComponent!}
                 UpdateComponent = {updateComponent}
-
             />
+        }
 
 </div>
         </section>

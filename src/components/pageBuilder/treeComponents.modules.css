@@ -25,6 +25,7 @@ ul {
     list-style: none;
     line-height: var(--line-height);
     padding-left: var(--ul-padding);
+    margin: 0;
 }
 
 ul summary {

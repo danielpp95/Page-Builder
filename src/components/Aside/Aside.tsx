@@ -30,7 +30,7 @@ export default function Aside({
     }
 
     return (
-        <div className='Aside'>
+        <aside className='Aside'>
             <TabsComponent SelectPage={SelectPage} />
             
 
@@ -52,6 +52,6 @@ export default function Aside({
                         linkedComponent = {SelectedComponent}
                     />)
             }
-        </div>
+        </aside>
     )
 }
