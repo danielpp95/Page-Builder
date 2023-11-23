@@ -1,15 +1,14 @@
 .header {
     background-color: rgb(226, 226, 226);
-    outline: 1px solid var(--outline);
+    border-bottom: 1px solid var(--outline);
     padding: 0.5rem 1rem;
     box-sizing: border-box;
     height: var(--header-height);
-    align-items: center;
-    display: grid;
-    grid-template-columns: 2fr 8fr 1fr;
+    display: flex;
 }
 
 .nav {
+    align-items: center;
     display: flex;
     gap: 1rem;
 }
@@ -20,7 +19,7 @@
     font-weight: 500;
     line-height: 1rem;
     padding: 1rem 1rem;
-    margin-left: -1rem;
+    font-size: 1.5rem;
 }
 
 .nav > a:first-child {

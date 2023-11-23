@@ -1,18 +1,19 @@
-import React from 'react'
+
 import './header.modules.css'
 
 export default function Header({
-  ToggleAside
+    ToggleAside,
+    RightItem
 }: any) {
-  return (
-    <div className='header'>
-        <h1>Page Builder</h1>
-
-        <div className="nav">
-          <a href="/">Home</a>
-          <a href="/component">component</a>
+    return (
+        <div className='header'>
+          
+            <div className="nav">
+                <h1>Page Builder</h1>
+                <a href="/">Home</a>
+                <a href="/component">component</a>
+            </div>
+            { RightItem && <RightItem /> }
         </div>
-        <button onClick={ToggleAside}>Show</button>
-    </div>
-  )
+    )
 }
