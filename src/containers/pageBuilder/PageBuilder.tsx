@@ -155,7 +155,7 @@ export default function PageBuilder()
 
     return (
         <>
-            <Header ToggleAside={toggleAside} />
+            <Header RightItem={ButtonAsideToggle({toggle: toggleAside})} />
         
             <section id='pageBuilder' className={`page-builder page-builder--${showAside ? 'aside' : 'full-screen'}`}>
                 <LinkedComponent
@@ -178,4 +178,12 @@ export default function PageBuilder()
             </section>
         </>
     )
+}
+
+interface ButtonAsideToggleProps {
+    toggle: () => void;
+}
+function ButtonAsideToggle({toggle} : ButtonAsideToggleProps)
+{
+    return <button onClick={toggle}>Toggle</button>
 }

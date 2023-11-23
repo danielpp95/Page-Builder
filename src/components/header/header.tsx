@@ -1,10 +1,14 @@
 
+import type { ReactNode } from 'react'
 import './header.modules.css'
 
+interface HeaderProps {
+    RightItem: ReactNode
+}
+
 export default function Header({
-    ToggleAside,
     RightItem
-}: any) {
+}: HeaderProps) {
     return (
         <div className='header'>
           
@@ -13,7 +17,7 @@ export default function Header({
                 <a href="/">Home</a>
                 <a href="/component">component</a>
             </div>
-            { RightItem && <RightItem /> }
+            { RightItem }
         </div>
     )
 }

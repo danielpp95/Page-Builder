@@ -5,6 +5,7 @@
     box-sizing: border-box;
     height: var(--header-height);
     display: flex;
+    justify-content: space-between;
 }
 
 .nav {
