@@ -1,6 +1,8 @@
 import { useEffect, useState, type CSSProperties } from 'react';
 import { renderers } from '../../template-components'
 import { Type, type ILinkedComponent } from "../interfaces/LinkedComponent";
+import FreeText from './freeText/freeText'
+import Select from './select/select'
 
 import './componentPropertyEditor.modules.css'
 
@@ -46,108 +48,60 @@ function RenderForm({linkedComponent, updateComponent}: ToolbarProps)
         setComponent(linkedComponent!.renderer?.name ?? renderers[0].name);;
     }, [linkedComponent])
 
-    function handleNameChange(name: string)
+    useEffect(() =>
     {
-        const newComponent: ILinkedComponent = {
-            ...linkedComponent!,
-            name: name
-        }
+        handleUpdateComponent();
+    }, [name, type, direction, component])
 
-        setName(name);
-        updateComponent(newComponent);
-    }
-
-
-    function handleTypeChange(type:Type)
-    {
+    function handleUpdateComponent(){
         const newCss: CSSProperties = {
-            ...componentStyles!,
-            display: type === Type.Component ? 'block' : 'flex'
-        }
-
-        const newComponent: ILinkedComponent = {
-            ...linkedComponent!,
-            style: newCss,
-            type: type,
-        }
-
-        setType(type)
-        setComponentStyles(newCss);
-        updateComponent(newComponent);
-    }
-
-    function handleDirectionChange(direction: FlexDirection)
-    {
-        const newCss: CSSProperties = {
-            ...componentStyles!,
-            display: 'flex',
+            ...linkedComponent!.style,
             flexDirection: direction,
         }
 
-        const newComponent: ILinkedComponent = {
+        let newComponent: ILinkedComponent = {
             ...linkedComponent!,
-            style: newCss
+            name: name,
+            style: newCss,
         }
-
-        setDirection(direction)
-        setComponentStyles(newCss);
-        updateComponent(newComponent);
-    }
-
-    function handleRendererChange(name: string)
-    {
-        const newComponent: ILinkedComponent = {
-            ...linkedComponent!,
-            renderer: renderers.find(x => x.name === name)
+        
+        if (type != Type.None) {
+            newCss.display = type === Type.Component ? 'block' : 'flex',
+            newComponent.type = type
+        }
+        
+        if (component) {
+            newComponent.renderer = renderers.find(x => x.name === component)
         }
 
         updateComponent(newComponent);
     }
 
     return <div className="properties">
-        {/* NAME */}
-        <span style={{margin:0}}>Name</span>
-        <input
-            type="text"
-            onChange={(e) => handleNameChange(e.target.value)}
-            value={name}/>
+        <FreeText name="Name" value={name} updater={setName} />
 
-        {/* TYPE */}
-        <span style={{margin:0}}>Type</span>
-        <select value={type} onChange={(e) => handleTypeChange(Number(e.target.value) as Type)}>
-            <option value={Type.Container}>Container</option>
-            <option value={Type.Component}>Component</option>
-        </select>
+        <Select
+            name='Type'
+            value={type.toString()}
+            updater={(e) => {const val = e as Type; console.log(val);setType(val)}}
+            options={[Type.Container, Type.Component]} />
 
-        {/* CONTAINER DIRECTION */}
         {
             type === Type.Container &&
-            <>
-                <span style={{margin:0}}>Direction</span>
-                <select value={direction} onChange={(e) => handleDirectionChange(e.target.value as FlexDirection)}>
-                    <option value="column">Column</option>
-                    <option value="column-reverse">Column reverse</option>
-                    <option value="row">Row</option>
-                    <option value="row-reverse">Row reverse</option>
-                </select>
-            </>
+                <Select
+                    name="direction"
+                    value={direction?.toString() ?? ''}
+                    updater={(e) => setDirection(e as FlexDirection)}
+                    options={["column", "column-reverse", "row", "row-reverse"]} />
         }
 
-        {/* COMPONENT */}
         {
             type === Type.Component &&
-                <>
-                    <span style={{margin:0}}>Component</span>
-                    <select 
-                        value={component}
-                        onChange={(e) => handleRendererChange(e.target.value as string)}
-                    >
-                        {
-                            renderers.map(x => (
-                                <option value={x.name} key={x.name}>{x.name}</option>))
-                        }
-                    </select>
-                </>
+                <Select
+                    name="component"
+                    value={component?.toString() ?? ''}
+                    updater={(e) => setComponent(e)}
+                    options={renderers.map(x => x.name)} />
         }
     </div>
 }

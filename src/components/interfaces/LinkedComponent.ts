@@ -17,7 +17,7 @@ export interface IRenderer {
 }
 
 export enum Type {
-    None,
-    Container,
-    Component
+    None='None',
+    Container='Container',
+    Component='Component'
 }
