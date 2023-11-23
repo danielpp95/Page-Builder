@@ -38,7 +38,7 @@ export default function PageBuilder()
             order);
 
         const newComponentsList = linkedComponents.map(x => {
-            if (x.id === parentId)
+            if (x.id === parentId && x.type !== Type.Container)
             {
                 x.type = Type.Container;
                 x.style = {
