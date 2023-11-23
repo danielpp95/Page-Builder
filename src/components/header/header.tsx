@@ -3,7 +3,7 @@ import type { ReactNode } from 'react'
 import './header.modules.css'
 
 interface HeaderProps {
-    RightItem: ReactNode
+    RightItem?: ReactNode
 }
 
 export default function Header({
@@ -15,7 +15,7 @@ export default function Header({
             <div className="nav">
                 <h1>Page Builder</h1>
                 <a href="/">Home</a>
-                <a href="/component">component</a>
+                <a href="/component">Components</a>
             </div>
             { RightItem }
         </div>
