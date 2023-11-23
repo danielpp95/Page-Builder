@@ -41,6 +41,10 @@ export default function PageBuilder()
             if (x.id === parentId)
             {
                 x.type = Type.Container;
+                x.style = {
+                    ...x.style,
+                    flexDirection: "column"
+                }
             }
 
             return x;
