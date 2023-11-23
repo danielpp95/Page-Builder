@@ -3,8 +3,33 @@
     outline: 1px solid var(--outline);
     padding: 0.5rem 1rem;
     box-sizing: border-box;
-    display: flex;
-    justify-content: space-between;
     height: var(--header-height);
     align-items: center;
+    display: grid;
+    grid-template-columns: 2fr 8fr 1fr;
+}
+
+.nav {
+    display: flex;
+    gap: 1rem;
+}
+
+.nav a{
+    text-decoration: none;
+    color: var(--color);
+    font-weight: 500;
+    line-height: 1rem;
+    padding: 1rem 1rem;
+    margin-left: -1rem;
+}
+
+.nav > a:first-child {
+    margin-left: 0rem;
+}
+
+.nav a:hover {
+    color: white;
+    background-color: var(--color);
+    box-sizing: border-box;
+    border-radius: 1rem;
 }
